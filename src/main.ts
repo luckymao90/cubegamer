@@ -113,10 +113,11 @@ function refreshStats() {
 }
 function refreshHud() {
   movesEl.textContent = String(game.playMoveCount);
-  btnUndo.disabled = !game.canUndo;
-  btnRedo.disabled = !game.canRedo;
-  btnScramble.disabled = game.busy;
+  btnUndo.disabled = !game.canUndo || game.scrambling;
+  btnRedo.disabled = !game.canRedo || game.scrambling;
+  btnScramble.disabled = game.busy && !game.scrambling;
   btnSolve.disabled = game.busy || !game.hasScramble;
+  btnReset.disabled = game.busy;
   saveGame();
 }
 refreshHud();
