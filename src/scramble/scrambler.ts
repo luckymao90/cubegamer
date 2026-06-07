@@ -3,7 +3,8 @@ import { latticeCoords } from '../cube/permutation';
 
 /** 默认打乱步数：按阶数缩放。 */
 export function defaultScrambleLength(N: number): number {
-  if (N <= 3) return 25;
+  if (N === 2) return 12;
+  if (N === 3) return 25;
   if (N === 4) return 40;
   if (N === 5) return 60;
   return 20 + N * 8;

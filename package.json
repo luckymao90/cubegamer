@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
-  "description": "支持 3/4/5 阶的魔方游戏 (NxN Rubik's cube game)",
+  "description": "支持 2/3/4/5 阶的魔方游戏 (NxN Rubik's cube game)",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

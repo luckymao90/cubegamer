@@ -89,7 +89,7 @@ speedInput.addEventListener('input', () => {
 
 // ── 阶数分段控件 ──────────────────────────────────────────────────────────────
 const sizeBtns: HTMLButtonElement[] = [];
-for (const n of [3, 4, 5]) {
+for (const n of [2, 3, 4, 5]) {
   const b = document.createElement('button');
   b.textContent = `${n}阶`;
   b.setAttribute('role', 'tab');
@@ -98,7 +98,7 @@ for (const n of [3, 4, 5]) {
   sizeBtns.push(b);
 }
 function updateSeg() {
-  sizeBtns.forEach((b, i) => b.classList.toggle('active', [3,4,5][i] === game.N));
+  sizeBtns.forEach((b, i) => b.classList.toggle('active', [2,3,4,5][i] === game.N));
 }
 updateSeg();
 

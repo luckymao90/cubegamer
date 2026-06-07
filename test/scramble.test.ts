@@ -11,7 +11,7 @@ function makeRng(seed: number): () => number {
 }
 
 describe('打乱生成', () => {
-  for (const N of [3, 4, 5]) {
+  for (const N of [2, 3, 4, 5]) {
     it(`N=${N}: 长度符合默认值且无连续同轴`, () => {
       const moves = generateScramble(N, makeRng(99 + N));
       expect(moves.length).toBe(defaultScrambleLength(N));

@@ -16,11 +16,11 @@ function makeRng(seed: number): () => number {
 
 describe('还原检测 isSolved', () => {
   it('已解魔方为已解', () => {
-    for (const N of [3, 4, 5]) expect(isSolved(createSolvedCube(N))).toBe(true);
+    for (const N of [2, 3, 4, 5]) expect(isSolved(createSolvedCube(N))).toBe(true);
   });
 
   it('单步之后不再是已解', () => {
-    for (const N of [3, 4, 5]) {
+    for (const N of [2, 3, 4, 5]) {
       const s = createSolvedCube(N);
       applyMove(s, { axis: 0, layers: [N - 1], dir: 1 });
       expect(isSolved(s)).toBe(false);
@@ -28,7 +28,7 @@ describe('还原检测 isSolved', () => {
   });
 
   it('整体旋转后的已解魔方仍判为已解（4 阶无中心关键用例）', () => {
-    for (const N of [3, 4, 5]) {
+    for (const N of [2, 3, 4, 5]) {
       const all = latticeCoords(N);
       for (const axis of [0, 1, 2] as Axis[]) {
         const s = createSolvedCube(N);
@@ -39,7 +39,7 @@ describe('还原检测 isSolved', () => {
   });
 
   it('打乱后非已解，整体反向后回到已解', () => {
-    for (const N of [3, 4, 5]) {
+    for (const N of [2, 3, 4, 5]) {
       const s = createSolvedCube(N);
       const moves: Move[] = generateScramble(N, makeRng(2024 + N));
       applyMoves(s, moves);

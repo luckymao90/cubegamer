@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">🧩 魔方游戏 · CubeMaster</h1>
-  <p align="center">支持 3×3 / 4×4 / 5×5 的交互式魔方游戏<br>Interactive NxN Rubik's Cube Game</p>
+  <p align="center">支持 2×2 / 3×3 / 4×4 / 5×5 的交互式魔方游戏<br>Interactive NxN Rubik's Cube Game</p>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 ### Features
 
-- **3 Cube Sizes** — 3×3 (Rubik's Cube), 4×4 (Rubik's Revenge), 5×5 (Professor's Cube)
+- **4 Cube Sizes** — 2×2 (Pocket Cube), 3×3 (Rubik's Cube), 4×4 (Rubik's Revenge), 5×5 (Professor's Cube)
 - **Interactive Turning** — Drag faces to turn, drag empty space to orbit camera
 - **One-Click Solve** — 3×3 uses Kociemba algorithm (short solution), 4×4/5×5 uses rewind-inverse (guaranteed correct)
 - **Scramble & Reset** — Auto-generate scrambles with inner layers; pause/cancel scramble anytime
@@ -89,7 +89,7 @@ npm run preview
 
 ### 功能
 
-- **三种尺寸** — 3×3（标准魔方）、4×4（Rubik's Revenge）、5×5（Professor's Cube）
+- **四种尺寸** — 2×2（口袋魔方）、3×3（标准魔方）、4×4（Rubik's Revenge）、5×5（Professor's Cube）
 - **拖拽转面** — 拖动魔方表面转动，拖动空白处旋转视角
 - **一键还原** — 3×3 用 Kociemba 算法求短解，4×4/5×5 用回放逆操作（保证还原）
 - **打乱 & 暂停** — 自动生成含内层的随机打乱；打乱过程中可随时停止

@@ -28,7 +28,7 @@ function makeRng(seed: number): () => number {
   };
 }
 
-const SIZES = [3, 4, 5];
+const SIZES = [2, 3, 4, 5];
 
 describe('applyMove 基础正确性', () => {
   it('每个单层转动后再反向 == 恒等', () => {

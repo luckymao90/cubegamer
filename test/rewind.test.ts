@@ -26,7 +26,7 @@ const Ri: Move = { axis: 0, layers: [2], dir: -1 };
 
 describe('rewindSolve 回放还原', () => {
   it('打乱后回放还原 → 已解 (3/4/5，多个种子)', () => {
-    for (const N of [3, 4, 5]) {
+    for (const N of [2, 3, 4, 5]) {
       for (const seed of [1, 2, 3, 42, 777]) {
         const s = createSolvedCube(N);
         const moves = generateScramble(N, makeRng(seed));
@@ -39,7 +39,7 @@ describe('rewindSolve 回放还原', () => {
   });
 
   it('cancelAdjacent 保持净置换不变', () => {
-    for (const N of [3, 4, 5]) {
+    for (const N of [2, 3, 4, 5]) {
       const moves = generateScramble(N, makeRng(2 * N + 5));
       const a = applyMoves(createSolvedCube(N), moves);
       const b = applyMoves(createSolvedCube(N), cancelAdjacent(moves));
