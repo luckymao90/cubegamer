@@ -158,7 +158,7 @@ game.onSolved = (record) => {
 game.onSolveComplete = () => { showToast('已还原 🎉'); refreshHud(); };
 game.onSolveStart = () => solvingEl.classList.add('show');
 game.onSolveEnd = () => solvingEl.classList.remove('show');
-game.onIdle = () => updateScrambleBtn();
+game.onIdle = () => { updateScrambleBtn(); refreshHud(); };
 
 // ── 按钮 ──────────────────────────────────────────────────────────────────────
 btnScramble.onclick = () => {
