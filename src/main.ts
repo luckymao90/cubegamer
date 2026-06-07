@@ -7,6 +7,7 @@ import { KeyboardController } from './interaction/keyboard';
 import { formatTime } from './game/Timer';
 import { warmKociemba } from './solve/kociemba';
 import { computeStats } from './game/Stats';
+import { faceMove, ALL_FACES } from './cube/notation';
 import { THEMES, themeById, applyTheme } from './ui/themes';
 import { TRIVIA } from './content/trivia';
 import { loadSave, writeSave, debounce, SAVE_SCHEMA } from './persistence/storage';
@@ -136,7 +137,7 @@ function showToast(msg: string) {
 // ── 游戏回调 ──────────────────────────────────────────────────────────────────
 game.onMoveApplied = () => { refreshHud(); };
 game.onReset = () => { refreshHud(); refreshStats(); updateSeg(); };
-game.onSizeChanged = (n) => { ctx.frameCube(n); updateSeg(); };
+game.onSizeChanged = (n) => { ctx.frameCube(n); updateSeg(); buildTurnButtons(); };
 game.onSolved = (record) => {
   solveRecords.push(record);
   refreshStats();
@@ -153,6 +154,29 @@ btnSolve.onclick = () => { void game.solve(150); };
 btnReset.onclick = () => game.resetToSolved();
 btnUndo.onclick = () => game.undo();
 btnRedo.onclick = () => game.redo();
+
+// 面转动按键（U R F D L B / 逆时针）
+const turnRow = document.getElementById('turn-row')!;
+function buildTurnButtons() {
+  turnRow.innerHTML = '';
+  for (const face of ALL_FACES) {
+    const pair = document.createElement('span');
+    pair.className = 'turn-pair';
+    const cw = document.createElement('button');
+    cw.className = 'turn-btn cw';
+    cw.textContent = face;
+    cw.title = `${face} 顺时针`;
+    cw.onclick = () => game.userTurn(faceMove(face, game.N));
+    const ccw = document.createElement('button');
+    ccw.className = 'turn-btn ccw';
+    ccw.textContent = `${face}'`;
+    ccw.title = `${face} 逆时针`;
+    ccw.onclick = () => game.userTurn(faceMove(face, game.N, true));
+    pair.append(cw, ccw);
+    turnRow.appendChild(pair);
+  }
+}
+buildTurnButtons();
 
 document.getElementById('theme-btn')!.onclick = () => {
   const idx = THEMES.findIndex(t => t.id === currentThemeId);

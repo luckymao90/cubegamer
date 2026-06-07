@@ -269,6 +269,51 @@ body {
   width: 90px;
 }
 
+/* ===== 面转动按键面板 ===== */
+.turn-panel {
+  position: fixed;
+  bottom: 94px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 10px 14px;
+}
+.turn-row {
+  display: flex;
+  gap: 6px;
+}
+.turn-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.turn-btn {
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: var(--card-2);
+  color: var(--text-strong);
+  font: 700 15px var(--font);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+  min-width: 36px;
+  text-align: center;
+}
+.turn-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+  background: var(--accent-soft);
+}
+.turn-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.turn-btn.ccw {
+  font-size: 12px;
+  padding: 4px 10px;
+  opacity: 0.78;
+}
+
 /* ===== 提示 / toast / 求解中 ===== */
 .hint {
   position: fixed;
@@ -439,5 +484,9 @@ body {
   }
   .speed {
     display: none;
+  }
+  .turn-panel {
+    bottom: 78px;
+    padding: 8px 10px;
   }
 }
