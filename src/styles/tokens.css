@@ -1,25 +1,25 @@
-/* 设计令牌 (Design tokens) — 明亮简约·卡片风。主题切换时覆盖这些变量即可。 */
+/* 设计令牌 (Design tokens) — 深色主题·卡片风（默认）。主题切换时覆盖这些变量即可。 */
 :root {
   /* 背景 */
-  --bg-0: #f8fafc;
-  --bg-1: #eef2f7;
+  --bg-0: #0b1020;
+  --bg-1: #0f172a;
 
   /* 卡片 */
-  --card: #ffffff;
-  --card-2: #f8fafc;
-  --card-border: rgba(15, 23, 42, 0.07);
-  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.06);
-  --shadow-hover: 0 10px 30px rgba(15, 23, 42, 0.12);
+  --card: #1e293b;
+  --card-2: #243043;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 12px 34px rgba(0, 0, 0, 0.55);
 
   /* 文本 */
-  --text-strong: #0f172a;
-  --text: #334155;
-  --text-muted: #64748b;
+  --text-strong: #f8fafc;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
 
   /* 强调色 */
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --accent-soft: rgba(59, 130, 246, 0.18);
   --accent-contrast: #ffffff;
   --danger: #ef4444;
   --success: #16a34a;
@@ -42,5 +42,5 @@
   --cube-B: #0051ba;
   --cube-R: #c41e3a;
   --cube-L: #ff8c1a;
-  --scene-bg: #eef2f7;
+  --scene-bg: #0b1020;
 }

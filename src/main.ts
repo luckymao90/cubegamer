@@ -18,7 +18,7 @@ const canvas = document.getElementById('cube-canvas') as HTMLCanvasElement;
 const ctx = createScene(canvas);
 const save = loadSave();
 const initN = save?.settings?.N ?? 3;
-const initThemeId = save?.settings?.themeId ?? 'classic';
+const initThemeId = save?.settings?.themeId ?? 'dark';
 const initSpeed = save?.settings?.speedMs ?? 200;
 
 const game = new GameController(ctx.scene, initN);
