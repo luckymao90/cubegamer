@@ -52,14 +52,19 @@ export class GameController {
 
   private pendingSolveReset = false;
   private solving = false;
+  private isScrambling = false;
 
   constructor(scene: THREE.Scene, N: number, palette?: Palette) {
     this.state = createSolvedCube(N);
     this.view = new CubeView(scene, palette);
     this.view.build(this.state);
     this.animator = new TurnAnimator(this.view.group);
-    this.queue = new MoveQueue((move, dur, meta) => this.step(move, dur, meta));
+    this.queue = new MoveQueue(
+      (move, dur, meta) => this.step(move, dur, meta),
+      () => this.animator.abort(),
+    );
     this.queue.onIdle = () => {
+      this.isScrambling = false;
       if (this.pendingSolveReset) {
         this.pendingSolveReset = false;
         this.history.reset();
@@ -96,6 +101,9 @@ export class GameController {
   get hasScramble(): boolean {
     return this.history.hasScramble;
   }
+  get scrambling(): boolean {
+    return this.isScrambling;
+  }
   get isTiming(): boolean {
     return this.timer.isRunning;
   }
@@ -123,8 +131,17 @@ export class GameController {
   scramble(): void {
     if (this.busy) return;
     this.resetToSolved();
+    this.isScrambling = true;
     const moves = generateScramble(this.state.N);
     this.enqueue(moves, { phase: 'scramble' });
+  }
+
+  /** 停止正在播放的打乱（中途暂停）。已完成的打乱步数保留。 */
+  cancelScramble(): void {
+    if (!this.isScrambling) return;
+    this.queue.cancelAll();
+    this.isScrambling = false;
+    this.onIdle?.();
   }
 
   undo(): void {

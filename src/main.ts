@@ -125,6 +125,16 @@ refreshStats();
 // 计时器每帧刷新
 ctx.onFrame(() => { timeEl.textContent = formatTime(game.elapsedMs()); });
 
+function updateScrambleBtn() {
+  if (game.scrambling) {
+    btnScramble.textContent = '停止打乱';
+    btnScramble.classList.add('danger');
+  } else {
+    btnScramble.textContent = '打乱';
+    btnScramble.classList.remove('danger');
+  }
+}
+
 // ── toast / 求解中 ────────────────────────────────────────────────────────────
 let toastTimer = 0;
 function showToast(msg: string) {
@@ -135,8 +145,8 @@ function showToast(msg: string) {
 }
 
 // ── 游戏回调 ──────────────────────────────────────────────────────────────────
-game.onMoveApplied = () => { refreshHud(); };
-game.onReset = () => { refreshHud(); refreshStats(); updateSeg(); };
+game.onMoveApplied = () => { refreshHud(); updateScrambleBtn(); };
+game.onReset = () => { refreshHud(); refreshStats(); updateSeg(); updateScrambleBtn(); };
 game.onSizeChanged = (n) => { ctx.frameCube(n); updateSeg(); buildTurnButtons(); };
 game.onSolved = (record) => {
   solveRecords.push(record);
@@ -147,9 +157,13 @@ game.onSolved = (record) => {
 game.onSolveComplete = () => { showToast('已还原 🎉'); refreshHud(); };
 game.onSolveStart = () => solvingEl.classList.add('show');
 game.onSolveEnd = () => solvingEl.classList.remove('show');
+game.onIdle = () => updateScrambleBtn();
 
 // ── 按钮 ──────────────────────────────────────────────────────────────────────
-btnScramble.onclick = () => game.scramble();
+btnScramble.onclick = () => {
+  if (game.scrambling) game.cancelScramble();
+  else game.scramble();
+};
 btnSolve.onclick = () => { void game.solve(150); };
 btnReset.onclick = () => game.resetToSolved();
 btnUndo.onclick = () => game.undo();

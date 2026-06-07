@@ -242,6 +242,9 @@ body {
 .btn.primary:hover:not(:disabled) {
   background: var(--accent-strong);
 }
+.btn.primary.danger {
+  background: var(--danger);
+}
 .btn.ghost {
   background: transparent;
 }

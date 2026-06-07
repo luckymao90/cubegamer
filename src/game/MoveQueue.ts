@@ -21,10 +21,13 @@ export class MoveQueue {
   private running = false;
   speedMs = 200;
 
-  /** 当队列从“有任务”变为“全部完成”时触发。 */
+  /** 当队列从”有任务”变为”全部完成”时触发。 */
   onIdle?: () => void;
 
-  constructor(private step: (move: Move, durationMs: number, meta: unknown) => Promise<void>) {}
+  constructor(
+    private step: (move: Move, durationMs: number, meta: unknown) => Promise<void>,
+    private abortCurrent: () => void = () => {},
+  ) {}
 
   get busy(): boolean {
     return this.running || this.items.length > 0;
@@ -39,6 +42,12 @@ export class MoveQueue {
     const arr = Array.isArray(moves) ? moves : [moves];
     for (const m of arr) this.items.push({ move: m, duration: dur, meta: opts?.meta });
     void this.drain();
+  }
+
+  /** 立即中止当前动画 + 清空排队。已完成的步骤不受影响。 */
+  cancelAll(): void {
+    this.items = [];
+    this.abortCurrent();
   }
 
   clearPending(): void {

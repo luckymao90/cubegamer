@@ -81,6 +81,11 @@ export class TurnAnimator {
     return this.active !== null;
   }
 
+  /** 立即结束当前动画（烘焙回写 + 吸附），用于暂停/取消。 */
+  abort(): void {
+    if (this.active) this.finish();
+  }
+
   /** 物理旋转给定网格 dir*90°，返回动画完成的 Promise。 */
   animate(move: Move, meshes: THREE.Object3D[], durationMs: number): Promise<void> {
     if (this.active) throw new Error('TurnAnimator 正忙');
