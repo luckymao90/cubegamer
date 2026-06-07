@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>魔方游戏 · CubeMaster</title>
+    <script type="module" crossorigin src="./assets/index-BZM3ifwr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C5o_pTsf.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="cube-canvas"></canvas>
+
+      <header class="topbar">
+        <div class="brand"><span class="logo">🧩</span> 魔方<span class="brand-sub">CubeMaster</span></div>
+        <div class="seg" id="size-seg" role="tablist" aria-label="阶数"></div>
+        <div class="top-actions">
+          <button class="icon-btn" id="theme-btn" title="切换主题">🎨</button>
+          <button class="chip-btn" id="trivia-btn">💡 小知识</button>
+        </div>
+      </header>
+
+      <section class="hud">
+        <div class="time" id="time">0.00</div>
+        <div class="hud-sub">步数 <b id="moves">0</b></div>
+        <div class="stat-grid">
+          <div><span>最佳</span><b id="st-best">—</b></div>
+          <div><span>上次</span><b id="st-last">—</b></div>
+          <div><span>ao5</span><b id="st-ao5">—</b></div>
+          <div><span>ao12</span><b id="st-ao12">—</b></div>
+        </div>
+      </section>
+
+      <footer class="dock">
+        <button class="btn primary" id="btn-scramble">打乱</button>
+        <button class="btn primary" id="btn-solve">一键还原</button>
+        <button class="btn" id="btn-reset">复位</button>
+        <div class="divider"></div>
+        <button class="btn ghost icon" id="btn-undo" title="撤销">↶</button>
+        <button class="btn ghost icon" id="btn-redo" title="重做">↷</button>
+        <label class="speed"><span>速度</span><input id="speed" type="range" min="1" max="10" step="1" /></label>
+      </footer>
+
+      <div class="turn-panel card" id="turn-panel">
+        <div class="turn-row" id="turn-row"></div>
+      </div>
+
+      <div class="hint">拖动魔方转面 · 拖空白转视角 · 键盘 R U F L D B（Shift 反向）</div>
+
+      <div class="modal-backdrop hidden" id="trivia-modal">
+        <div class="modal card">
+          <div class="modal-head">
+            <h2>💡 魔方小知识</h2>
+            <button class="icon-btn" id="trivia-close" title="关闭">✕</button>
+          </div>
+          <div class="trivia-body">
+            <div class="trivia-title" id="tv-title"></div>
+            <div class="trivia-text" id="tv-text"></div>
+          </div>
+          <div class="modal-foot">
+            <button class="btn ghost" id="tv-prev">‹ 上一条</button>
+            <span class="tv-count" id="tv-count"></span>
+            <button class="btn ghost" id="tv-next">下一条 ›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toast" id="toast">已还原 🎉</div>
+      <div class="solving" id="solving">求解中…</div>
+    </div>
+  </body>
+</html>
