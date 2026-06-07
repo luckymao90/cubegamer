@@ -272,20 +272,20 @@ body {
 /* ===== 面转动按键面板 ===== */
 .turn-panel {
   position: fixed;
-  bottom: 94px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 18px;
+  bottom: 50%;
+  transform: translateY(50%);
   z-index: 10;
   padding: 10px 14px;
 }
 .turn-row {
   display: flex;
+  flex-direction: column;
   gap: 6px;
 }
 .turn-pair {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 .turn-btn {
   padding: 7px 12px;
@@ -486,7 +486,9 @@ body {
     display: none;
   }
   .turn-panel {
-    bottom: 78px;
-    padding: 8px 10px;
+    right: 6px;
+    bottom: 50%;
+    padding: 6px 8px;
+    gap: 3px;
   }
 }
