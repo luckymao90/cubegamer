@@ -75,7 +75,7 @@ export function createScene(canvas: HTMLCanvasElement): SceneContext {
   function frameCube(N: number) {
     const H = N / 2 + 0.5;
     const fov = (camera.fov * Math.PI) / 180;
-    const dist = (H / Math.tan(fov / 2)) * 1.35;
+    const dist = (H / Math.tan(fov / 2)) * 1.7;
     const dirv = new THREE.Vector3(1, 0.82, 1.15).normalize();
     camera.position.copy(dirv.multiplyScalar(dist));
     camera.updateProjectionMatrix();
